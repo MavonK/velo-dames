@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Velo Dames: cycling news, race coverage and rider profiles for women who love the sport.">
+  <title>Velo Dames · Cycling for women</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    /* ── TOKENS ────────────────────────────── */
+    :root {
+      --yellow: #FFD700;
+      --pink:   #E4077E;
+      --red:    #DC2626;
+      --dark:   #0D1117;
+      --mid:    #1a1a2e;
+      --muted:  #6b7280;
+      --r:      12px;
+      --max:    680px;        /* content max-width — newsletter column width */
+    }
+
+    /* ── NAVIGATION ─────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px;
+      height: 52px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .nav-logo svg { width: 32px; height: 32px; flex-shrink: 0; }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 900; color: #fff;
+    }
+    .nav-links {
+      display: none; /* hidden on mobile */
+      gap: 2px;
+    }
+    .nav-link {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 13px; font-weight: 600;
+      padding: 6px 12px; border-radius: 20px;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link.races    { --c: var(--pink); }
+    .nav-link.know     { --c: var(--yellow); }
+    .nav-link.profiles { --c: var(--red); }
+    .nav-link:hover, .nav-link.active { color: var(--c); }
+    .nav-subscribe {
+      background: var(--pink); color: #fff;
+      padding: 8px 16px; border-radius: 20px;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none; white-space: nowrap;
+      min-height: 36px; display: flex; align-items: center;
+    }
+
+    /* Show nav links on wider screens */
+    @media (min-width: 640px) {
+      .nav { padding: 0 24px; }
+      .nav-links { display: flex; }
+    }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, var(--dark) 0%, #1a0010 55%, #2a0020 100%);
+      padding: 44px 20px 40px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(228,7,126,0.13) 0%, transparent 55%),
+                  radial-gradient(ellipse at 70% 40%, rgba(255,215,0,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-logo { margin: 0 auto 22px; }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 8vw, 52px);
+      font-weight: 900; color: #fff;
+      line-height: 1.15; margin-bottom: 14px;
+    }
+    .hero h1 em { font-style: italic; color: var(--pink); }
+    .hero-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: 15px; max-width: 400px;
+      margin: 0 auto 28px; line-height: 1.65;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center;
+    }
+    .hero-badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.7);
+      padding: 5px 13px; border-radius: 20px;
+      font-size: 12px; font-weight: 600;
+    }
+    .hero-badge.pink   { border-color: rgba(228,7,126,0.5); color: #ff7ec8; }
+    .hero-badge.yellow { border-color: rgba(255,215,0,0.5); color: var(--yellow); }
+    .hero-badge.red    { border-color: rgba(220,38,38,0.5); color: #f87171; }
+
+    /* ── SHARED SECTION STYLES ──────────────── */
+    .section-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .section-head {
+      padding: 40px 0 20px;
+      border-bottom: 1px solid #efefef;
+      margin-bottom: 24px;
+    }
+    .section-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 900;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 3px 9px; border-radius: 20px;
+    }
+    .section-sub {
+      font-size: 13px; color: var(--muted);
+      margin-top: 5px; line-height: 1.5;
+    }
+
+    /* ── RACE UPDATES ───────────────────────── */
+    #races { background: #fff; }
+    #races .section-head h2 { color: var(--pink); }
+    #races .section-tag { background: #fce4f3; color: var(--pink); }
+
+    /* Featured article: stacked on mobile, side-by-side at 640px */
+    .race-featured {
+      border-radius: var(--r);
+      overflow: hidden;
+      border: 1px solid #f5e0f0;
+      box-shadow: 0 4px 20px rgba(228,7,126,0.10);
+      margin-bottom: 16px;
+    }
+    .race-featured-img {
+      height: 220px;
+      background: linear-gradient(135deg, #1a0010, #3d0030);
+      position: relative; overflow: hidden;
+    }
+    .race-featured-img img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top; opacity: 0.85;
+    }
+    .race-featured-img .img-credit {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.55); padding: 4px 10px;
+      font-size: 10px; color: rgba(255,255,255,0.45);
+    }
+    .race-featured-body { padding: 20px; background: #fff; }
+    .race-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      color: var(--pink); margin-bottom: 8px;
+    }
+    .race-featured-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 900;
+      color: var(--mid); line-height: 1.25; margin-bottom: 10px;
+    }
+    .race-featured-body p {
+      font-size: 14px; color: #374151; line-height: 1.7;
+    }
+    .race-route {
+      display: flex; align-items: center; gap: 6px;
+      background: #fce4f3; border-radius: 8px;
+      padding: 7px 12px; margin: 10px 0;
+      font-size: 12px; font-weight: 600; color: #a8005a;
+    }
+    .race-route .dist {
+      margin-left: auto; background: var(--pink);
+      color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 11px;
+    }
+    .read-more {
+      display: inline-flex; align-items: center; gap: 4px;
+      color: var(--pink); font-size: 13px; font-weight: 700;
+      text-decoration: none; margin-top: 12px;
+      min-height: 44px; /* touch target */
+    }
+
+    @media (min-width: 640px) {
+      .race-featured { display: grid; grid-template-columns: 1fr 1fr; }
+      .race-featured-img { height: 100%; min-height: 240px; }
+    }
+
+    /* Story cards: 1 col mobile, 3 col wide */
+    .story-grid {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 40px;
+    }
+    .story-card {
+      border: 1px solid #f0f0f0; border-radius: var(--r);
+      overflow: hidden;
+    }
+    .story-card-img {
+      height: 130px;
+      position: relative; overflow: hidden;
+    }
+    .story-card-img img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+    .story-card-body { padding: 14px 16px 16px; }
+    .story-card-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+    .story-card-body h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px; font-weight: 700;
+      line-height: 1.3; margin-bottom: 6px; color: var(--mid);
+    }
+    .story-card-body p { font-size: 13px; color: #4b5563; line-height: 1.6; }
+
+    @media (min-width: 640px) {
+      .story-grid { flex-direction: row; }
+      .story-card { flex: 1; }
+    }
+
+    /* ── KNOWLEDGE ──────────────────────────── */
+    #knowledge { background: #fdfcf8; }
+    #knowledge .section-head h2 { color: #92400e; }
+    #knowledge .section-tag { background: #fef3c7; color: #92400e; }
+    #knowledge .section-head { border-bottom-color: #f0e8d0; }
+
+    .knowledge-grid {
+      display: flex; flex-direction: column; gap: 14px;
+      margin-bottom: 40px;
+    }
+    .knowledge-card {
+      background: #fff; border-radius: var(--r);
+      border: 1px solid #f5f0e8;
+      padding: 20px;
+    }
+    .knowledge-icon { font-size: 28px; margin-bottom: 12px; }
+    .knowledge-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px; font-weight: 700;
+      color: var(--mid); line-height: 1.3; margin-bottom: 8px;
+    }
+    .knowledge-card p { font-size: 13px; color: #4b5563; line-height: 1.7; }
+    .nugget-highlight {
+      background: #fef3c7; border-left: 3px solid var(--yellow);
+      border-radius: 0 6px 6px 0;
+      padding: 9px 13px; margin: 10px 0;
+      font-size: 13px; color: #78350f; font-style: italic;
+      line-height: 1.6;
+    }
+    .read-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      color: #92400e; font-size: 12px; font-weight: 700;
+      text-decoration: none; margin-top: 12px;
+      min-height: 44px;
+    }
+
+    @media (min-width: 640px) {
+      .knowledge-grid { flex-direction: row; align-items: stretch; }
+      .knowledge-card { flex: 1; display: flex; flex-direction: column; }
+      .knowledge-card p:last-of-type { flex: 1; }
+    }
+
+    /* ── PROFILES ───────────────────────────── */
+    #profiles { background: var(--dark); padding-bottom: 16px; }
+    #profiles .section-head {
+      border-bottom-color: rgba(255,255,255,0.08);
+    }
+    #profiles .section-head h2 { color: #f87171; }
+    #profiles .section-tag { background: rgba(220,38,38,0.18); color: #f87171; }
+    #profiles .section-sub { color: rgba(255,255,255,0.35); }
+
+    .profiles-grid {
+      display: flex; flex-direction: column; gap: 14px;
+      margin-bottom: 40px;
+    }
+    .profile-card {
+      background: #161b22; border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.07);
+      overflow: hidden;
+    }
+    .profile-img {
+      height: 160px;
+      background: linear-gradient(135deg, #1a0010, #3d0030);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px; position: relative; overflow: hidden;
+    }
+    .profile-img img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+    }
+    .profile-flag {
+      position: absolute; bottom: 8px; right: 10px; font-size: 22px;
+    }
+    .profile-body { padding: 16px; }
+    .profile-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 2px;
+    }
+    .profile-team { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+    .profile-bio { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 10px; }
+    .profile-wins { display: flex; flex-wrap: wrap; gap: 6px; }
+    .win-tag {
+      background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.55);
+      font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px;
+    }
+    .win-tag.gold { background: rgba(255,215,0,0.14); color: var(--yellow); }
+    .win-tag.pink { background: rgba(228,7,126,0.14); color: #ff7ec8; }
+
+    @media (min-width: 640px) {
+      .profiles-grid { flex-direction: row; flex-wrap: wrap; }
+      .profile-card { flex: 1 1 calc(50% - 7px); max-width: calc(50% - 7px); }
+    }
+
+    /* ── FOLLOW SECTION ─────────────────────── */
+    #follow {
+      background: linear-gradient(135deg, #1a0a2e 0%, #3d0030 100%);
+      padding: 48px 20px; text-align: center; color: #fff;
+    }
+    #follow h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 900; margin-bottom: 8px;
+    }
+    #follow p { font-size: 14px; opacity: 0.7; margin-bottom: 24px; line-height: 1.6; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #25D366; color: #fff;
+      padding: 14px 28px; border-radius: 12px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      min-height: 52px;
+      transition: background 0.2s;
+    }
+    .wa-btn:hover { background: #1da855; }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.3);
+      padding: 28px 20px; text-align: center;
+      font-size: 12px; line-height: 2;
+    }
+    footer a { color: var(--pink); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+
+    /* ── DIVIDER ────────────────────────────── */
+    .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0; }
+
+    /* ── JUMP NAV ───────────────────────────── */
+    .jump-nav {
+      background: var(--dark);
+      display: flex; gap: 8px;
+      padding: 8px 16px 10px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky; top: 52px; z-index: 100;
+    }
+    .jump-nav::-webkit-scrollbar { display: none; }
+    .jump-link {
+      flex-shrink: 0; font-size: 12px; font-weight: 700;
+      padding: 6px 14px; border-radius: 20px;
+      text-decoration: none; border: 1px solid transparent;
+      transition: opacity 0.2s;
+    }
+    .jump-link:hover { opacity: 0.8; }
+    .jump-pink   { background: rgba(228,7,126,0.12); color: var(--pink); border-color: rgba(228,7,126,0.3); }
+    .jump-yellow { background: rgba(255,215,0,0.10); color: var(--yellow); border-color: rgba(255,215,0,0.3); }
+    .jump-dark   { background: rgba(220,38,38,0.10); color: #f87171; border-color: rgba(220,38,38,0.3); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="250" cy="250" r="250" fill="#0D1117"/>
+      <path d="M 250 18 A 232 232 0 0 1 451 366 L 399 336 A 172 172 0 0 0 250 78 Z" fill="#FFD700"/>
+      <path d="M 451 366 A 232 232 0 0 1 49 366 L 101 336 A 172 172 0 0 0 399 336 Z" fill="#E4077E"/>
+      <path d="M 49 366 A 232 232 0 0 1 250 18 L 250 78 A 172 172 0 0 0 101 336 Z" fill="#DC2626"/>
+      <text x="250" y="240" font-family="Impact,sans-serif" font-size="108" fill="white" text-anchor="middle">VELO</text>
+      <text x="250" y="322" font-family="Impact,sans-serif" font-size="80" fill="white" text-anchor="middle">DAMES</text>
+    </svg>
+    <span class="nav-logo-text">Velo Dames</span>
+  </a>
+  <div class="nav-links">
+    <a href="#races"     class="nav-link races">Race updates</a>
+    <a href="#knowledge" class="nav-link know">Knowledge</a>
+    <a href="#profiles"  class="nav-link profiles">Profiles</a>
+  </div>
+  <a href="#follow" class="nav-subscribe">Follow 📲</a>
+</nav>
+
+<!-- SECTION JUMP NAV -->
+<div class="jump-nav">
+  <a href="#races"     class="jump-link jump-pink">🌸 Race updates</a>
+  <a href="#knowledge" class="jump-link jump-yellow">📚 Knowledge</a>
+  <a href="#profiles"  class="jump-link jump-dark">👩 Rider profiles</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <svg class="hero-logo" width="80" height="80" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="250" cy="250" r="250" fill="#0D1117"/>
+    <path d="M 250 18 A 232 232 0 0 1 451 366 L 399 336 A 172 172 0 0 0 250 78 Z" fill="#FFD700"/>
+    <path d="M 451 366 A 232 232 0 0 1 49 366 L 101 336 A 172 172 0 0 0 399 336 Z" fill="#E4077E"/>
+    <path d="M 49 366 A 232 232 0 0 1 250 18 L 250 78 A 172 172 0 0 0 101 336 Z" fill="#DC2626"/>
+    <text x="250" y="240" font-family="Impact,sans-serif" font-size="108" fill="white" text-anchor="middle">VELO</text>
+    <text x="250" y="322" font-family="Impact,sans-serif" font-size="80" fill="white" text-anchor="middle">DAMES</text>
+  </svg>
+  <p class="hero-eyebrow">Cycling for women who love the sport</p>
+  <h1>Race news, rider profiles,<br>and <em>the real story</em> behind every stage.</h1>
+  <p class="hero-sub">Women's racing first. Grand Tours always. DACH-based, English-spoken, everyone welcome.</p>
+</header>
+
+
+<!-- RACE UPDATES -->
+<section id="races">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2>Race updates <span class="section-tag">🌸 Live</span></h2>
+      <p class="section-sub">Daily stage summaries, insider takes, and GC analysis</p>
+    </div>
+
+    <div class="race-featured">
+      <div class="race-featured-img">
+        <!-- Update image URL each day with a relevant stage photo -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Jonas_Vingegaard_2024_TdF_%28cropped%29.jpg/800px-Jonas_Vingegaard_2024_TdF_%28cropped%29.jpg"
+             alt="Jonas Vingegaard">
+        <div class="img-credit">📷 Wikimedia Commons · replace with current stage photo</div>
+      </div>
+      <div class="race-featured-body">
+        <div class="race-eyebrow">Giro d'Italia 2026 · Stage 16 · 28th May</div>
+        <h3>Vingegaard is on a completely different level right now</h3>
+        <div class="race-route">
+          📍 Bellinzona <span style="opacity:.4">→</span> Carì
+          <span class="dist">113 km</span>
+        </div>
+        <p>Visma dismantled the peloton before the final climb even began. Jonas attacked 5km from the summit in the pink jersey and nobody could follow. Solo win, third stage victory at this Giro. He has already won the Tour de France twice and is only getting stronger. Right now there is simply no one who can touch him in the mountains.</p>
+        <a href="giro-update.html" class="read-more">Read the full update →</a>
+      </div>
+    </div>
+
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="story-card-img" style="background:linear-gradient(135deg,#1a0010,#3d0030);">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/2023_ToB_stage_7_-_152_Fredrik_Dversnes.JPG/500px-2023_ToB_stage_7_-_152_Fredrik_Dversnes.JPG" alt="Fredrik Dversnes">
+        </div>
+        <div class="story-card-body">
+          <div class="story-card-tag" style="color:var(--red);">Controversy · Stage 15</div>
+          <h4>Did motorcycles decide the Milan sprint?</h4>
+          <p>The sprint teams erupted after Dversnes won from the breakaway. The accusation: TV camera bikes accidentally gave the escape group a massive drafting advantage. Max Walscheid called it out on live television. The UCI is now under pressure.</p>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-card-img" style="background:linear-gradient(135deg,#0f2027,#203a43);">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/TDF_2023_Gall%2C_Vingegaard%2C_Pogacar.jpg/500px-TDF_2023_Gall%2C_Vingegaard%2C_Pogacar.jpg" alt="Felix Gall TdF 2023">
+        </div>
+        <div class="story-card-body">
+          <div class="story-card-tag" style="color:var(--pink);">GC battle</div>
+          <h4>Felix vs Jai vs Thymen: the podium is wide open</h4>
+          <p>Gall holds 2nd but Red Bull has two cards to play: Hindley and Pellizzari sit just 53 seconds behind 3rd. Five stages left. This fight is far from over.</p>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-card-img" style="background:linear-gradient(135deg,#1a0050,#3d0080);">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Strade_Bianche-39_%2851964652529%29.jpg/500px-Strade_Bianche-39_%2851964652529%29.jpg" alt="Jhonatan Narváez">
+        </div>
+        <div class="story-card-body">
+          <div class="story-card-tag" style="color:#7c3aed;">Points jersey</div>
+          <h4>First time since 2012: a climber might win the purple jersey</h4>
+          <p>Magnier leads 145 to 131 over Narváez, but every remaining finish is uphill. Only one pure sprint left, in Rome. Watch this flip.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- KNOWLEDGE NUGGETS -->
+<section id="knowledge">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2>Knowledge nuggets <span class="section-tag">📚 Learn</span></h2>
+      <p class="section-sub">Everything you need to watch cycling like you've always followed it</p>
+    </div>
+
+    <div class="knowledge-grid">
+
+      <div class="knowledge-card">
+        <div class="knowledge-icon">🏃‍♂️💨</div>
+        <h4>How a breakaway works (and why it sometimes succeeds)</h4>
+        <p>Every stage starts the same way: a group attacks from the front and the peloton lets them go. But why? And why do sprinter teams sometimes fail to catch them?</p>
+        <div class="nugget-highlight">The Stage 15 finish in Milan is a perfect example. Fredrik Dversnes won from a breakaway that the entire sprint peloton failed to catch.</div>
+        <p>The peloton tolerates a breakaway because the sprint teams are confident they can chase it down in the final kilometres. The catch: it takes perfect organisation, timing, and a bit of luck. When even one team hesitates or misjudges the gap, the break survives.</p>
+      </div>
+
+      <div class="knowledge-card">
+        <div class="knowledge-icon">🏆</div>
+        <h4>The three grand tours: Giro, Tour, Vuelta. What's the difference?</h4>
+        <p>Three weeks of racing, 21 stages, mountains, sprints, time trials. The Grand Tours are the biggest events in cycling. Here's how to tell them apart.</p>
+        <div class="nugget-highlight">The Giro d'Italia (May), Tour de France (July), Vuelta a España (September). Winning all three in a career is called the Triple Crown. Only a handful of riders have ever done it.</div>
+        <p>Each race has its own character: the Giro is known for brutal climbs and unpredictable weather, the Tour for prestige and the biggest prize money, the Vuelta for chaotic racing in the late-season heat.</p>
+      </div>
+
+      <div class="knowledge-card">
+        <div class="knowledge-icon">👚</div>
+        <h4>The jerseys explained: what each colour actually means</h4>
+        <p>Pink, yellow, red, polka dots, green. Cycling has a lot of jerseys and each one means something different. Here's your complete guide.</p>
+        <div class="nugget-highlight">The overall leader wears pink at the Giro (Maglia Rosa), yellow at the Tour (Maillot Jaune), red at the Vuelta (Maillot Rojo). These three colours (no coincidence) are exactly the Velo Dames brand colours.</div>
+        <p>There are also jerseys for the best climber (polka dot at the Tour), the best sprinter (green at the Tour), the best young rider (white), and mountain points (blue at the Giro).</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PROFILES -->
+<section id="profiles">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2>Rider profiles <span class="section-tag">👩 The women to watch</span></h2>
+      <p class="section-sub">The athletes shaping women's cycling right now</p>
+    </div>
+
+    <div class="profiles-grid">
+
+      <div class="profile-card">
+        <div class="profile-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Demi_Vollering_-_2025_European_road_championship_podium_-_Guilherand-Granges.jpg/500px-Demi_Vollering_-_2025_European_road_championship_podium_-_Guilherand-Granges.jpg" alt="Demi Vollering" loading="lazy">
+          <div class="img-credit">📷 Wikimedia Commons (CC BY-SA 4.0)</div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-name">Demi Vollering</div>
+          <div class="profile-team">SD Worx-Protime</div>
+          <p class="profile-bio">One of the most complete riders in the women's peloton. Climbs, time trials, one-day classics. She can do it all. Tour de France Femmes champion, multiple Classics winner, and one of the most exciting racers to watch.</p>
+          <div class="profile-wins">
+            <span class="win-tag gold">TdF Femmes 2023</span>
+            <span class="win-tag pink">Strade Bianche</span>
+            <span class="win-tag">La Flèche Wallonne</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/TDFF24_Kasia_Niewiadoma.jpg/500px-TDFF24_Kasia_Niewiadoma.jpg" alt="Kasia Niewiadoma" loading="lazy">
+          <div class="img-credit">📷 Wikimedia Commons (CC BY-SA 4.0)</div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-name">Kasia Niewiadoma</div>
+          <div class="profile-team">Canyon-SRAM Racing</div>
+          <p class="profile-bio">The 2024 Tour de France Femmes champion in one of the most dramatic finishes in women's cycling history. A pure climber who thrives in the mountains and never gives up, even when the odds seem impossible.</p>
+          <div class="profile-wins">
+            <span class="win-tag gold">TdF Femmes 2024</span>
+            <span class="win-tag">Vuelta Femenina</span>
+            <span class="win-tag pink">Worlds podium</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Elisa_Longo_Borghini%2C_2023_LBL_finish_156.jpg/500px-Elisa_Longo_Borghini%2C_2023_LBL_finish_156.jpg" alt="Elisa Longo Borghini" loading="lazy">
+          <div class="img-credit">📷 Wikimedia Commons (CC BY-SA 4.0)</div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-name">Elisa Longo Borghini</div>
+          <div class="profile-team">Lidl-Trek</div>
+          <p class="profile-bio">Italy's most decorated active cyclist. Multiple Strade Bianche winner, Paris-Roubaix champion, Giro Donne contender year after year. She has been near the top of women's cycling for over a decade and keeps getting better.</p>
+          <div class="profile-wins">
+            <span class="win-tag gold">Paris-Roubaix</span>
+            <span class="win-tag pink">Strade Bianche x3</span>
+            <span class="win-tag">Giro Donne podium</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/8e_%C3%A9tape_Tour_de_France_Femmes_2025_-_Pr%C3%A9sentations_-_Pauline_Ferrand-Pr%C3%A9vot_1.JPG/500px-8e_%C3%A9tape_Tour_de_France_Femmes_2025_-_Pr%C3%A9sentations_-_Pauline_Ferrand-Pr%C3%A9vot_1.JPG" alt="Pauline Ferrand-Prévot" loading="lazy">
+          <div class="img-credit">📷 Wikimedia Commons (CC BY-SA 4.0)</div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-name">Pauline Ferrand-Prévot</div>
+          <div class="profile-team">Visma–Lease a Bike</div>
+          <p class="profile-bio">France's most extraordinary cycling comeback. After six years away from road racing she returned in 2025 and won the Tour de France Femmes on her first attempt, by over three minutes. The first French winner of the race. Before her road break she was world champion in three disciplines in the same year.</p>
+          <div class="profile-wins">
+            <span class="win-tag gold">TdF Femmes 2025</span>
+            <span class="win-tag">Cyclo-cross worlds</span>
+            <span class="win-tag pink">MTB worlds</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOLLOW -->
+<section id="follow">
+  <h2>🌸 Follow Velo Dames</h2>
+  <p>Get daily race updates and cycling stories straight to your WhatsApp. No inbox, no newsletters, just the good stuff.</p>
+  <a href="https://whatsapp.com/channel/0029VbDPTBg1t90XjjW2391l" class="wa-btn" target="_blank">
+    📲 Follow on WhatsApp channel
+  </a>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <strong>Velo Dames 🚴‍♀️</strong> · Cycling for women · DACH · English<br>
+  Curated with 💗 by Marion<br>
+  Sources:
+  <a href="https://www.eurosport.de/radsport/" target="_blank">Eurosport</a> ·
+  <a href="https://www.procyclingstats.com" target="_blank">ProCyclingStats</a> ·
+  <a href="https://www.cyclingnews.com" target="_blank">CyclingNews</a> ·
+  <a href="https://www.velonews.com" target="_blank">VeloNews</a><br>
+  <span style="opacity:0.4;font-size:10px;">Images used with attribution. All rights belong to respective owners.</span>
+</footer>
+
+<script>
+  const linkMap = { races: 'races', knowledge: 'know', profiles: 'profiles' };
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        const cls = linkMap[e.target.id];
+        if (cls) document.querySelector(`.nav-link.${cls}`)?.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  ['races','knowledge','profiles'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+</script>
+
+</body>
+</html>

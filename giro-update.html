@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dein tägliches Giro d'Italia Insider-Update – kuratiert für Ladies, die wissen wollen was im Peloton wirklich passiert!">
+  <meta property="og:title" content="🌸 Ciao Ladies! — Etappe 16: Vingegaard macht den Boss">
+  <meta property="og:description" content="Jonas Vingegaard gewinnt Solo im Tessin. Motorrad-Eklat, Podiums-Krimi, Punkte-Trikot-Drama!">
+  <title>🌸 Ciao Ladies! — Giro d'Italia Daily</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET & BASE ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f0f5;
+      color: #1a1a2e;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── VARIABLES ────────────────────────────────── */
+    :root {
+      --pink:    #E4077E;
+      --pink-lt: #fce4f3;
+      --pink-dk: #a8005a;
+      --dark:    #1a1a2e;
+      --mid:     #2e2e4a;
+      --muted:   #6b7280;
+      --gold:    #f59e0b;
+      --green:   #10b981;
+      --card-bg: #ffffff;
+      --border:  #f0e0ed;
+      --radius:  14px;
+      --shadow:  0 4px 24px rgba(228,7,126,0.10);
+    }
+
+    /* ── LAYOUT WRAPPER ───────────────────────────── */
+    .wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    /* ── TOP BAR ──────────────────────────────────── */
+    .topbar {
+      background: var(--dark);
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar span { opacity: 0.7; }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2e0a1e 40%, #6b003d 70%, #E4077E 100%);
+      color: #fff;
+      padding: 40px 24px 36px;
+      border-radius: 0 0 var(--radius) var(--radius);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .hero::before {
+      content: "🌸";
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      font-size: 120px;
+      opacity: 0.08;
+      line-height: 1;
+    }
+    .hero .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 8vw, 52px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: #ffb3dc;
+    }
+    .hero .hero-sub {
+      font-size: 15px;
+      opacity: 0.85;
+      max-width: 460px;
+      margin-bottom: 20px;
+    }
+    .hero .stage-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--pink);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SECTION LABEL ────────────────────────────── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CARD BASE ────────────────────────────────── */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── FEATURE CARD (Stage Winner) ──────────────── */
+    .feature-card .card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .feature-card .card-img-placeholder {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      text-align: center;
+      gap: 8px;
+    }
+    .feature-card .card-img-placeholder .img-icon { font-size: 40px; opacity: 0.6; }
+    .img-credit {
+      font-size: 10px;
+      color: var(--muted);
+      padding: 4px 16px;
+      background: #fafafa;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-card .card-body { padding: 20px; }
+    .feature-card .winner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--pink-lt);
+      color: var(--pink-dk);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .feature-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .feature-card p { color: #374151; font-size: 15px; line-height: 1.65; }
+
+    /* ── ROUTE BAR ────────────────────────────────── */
+    .route-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--pink-lt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 14px 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--pink-dk);
+    }
+    .route-bar .sep { opacity: 0.4; font-size: 16px; }
+    .route-bar .distance {
+      margin-left: auto;
+      background: var(--pink);
+      color: white;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 11px;
+    }
+
+    /* ── STORY CARD (smaller) ─────────────────────── */
+    .story-card .card-header {
+      padding: 16px 18px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .story-card .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .icon-box.pink   { background: var(--pink-lt); }
+    .icon-box.dark   { background: #e8e8f0; }
+    .icon-box.gold   { background: #fef3c7; }
+    .icon-box.green  { background: #d1fae5; }
+    .story-card .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .story-card .card-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+    .story-card .card-body { padding: 0 18px 18px; font-size: 14px; color: #374151; line-height: 1.65; }
+    .story-card .card-img-sm {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    .story-card .card-img-sm-placeholder {
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #2e0a1e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      opacity: 0.7;
+      margin-bottom: 2px;
+    }
+
+    /* ── QUOTE BLOCK ──────────────────────────────── */
+    .quote-block {
+      border-left: 3px solid var(--pink);
+      background: var(--pink-lt);
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--pink-dk);
+    }
+    .quote-block cite {
+      display: block;
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 5px;
+      opacity: 0.8;
+    }
+
+    /* ── BULLET LIST ──────────────────────────────── */
+    .bullet-list { list-style: none; margin: 10px 0; }
+    .bullet-list li {
+      padding: 5px 0 5px 22px;
+      position: relative;
+      font-size: 14px;
+      color: #374151;
+      border-bottom: 1px solid #fdf0f8;
+    }
+    .bullet-list li:last-child { border-bottom: none; }
+    .bullet-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--pink);
+      font-size: 12px;
+      top: 6px;
+    }
+
+    /* ── STANDINGS ────────────────────────────────── */
+    .standings-card .card-body { padding: 0 0 4px; }
+    .standings-card .standings-header {
+      padding: 16px 18px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .standings-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .jersey-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .jersey-tag.rosa { background: var(--pink-lt); color: var(--pink-dk); }
+    .jersey-tag.ciclamino { background: #f3e8ff; color: #6d28d9; }
+    .standings-table { width: 100%; border-collapse: collapse; }
+    .standings-table thead th {
+      background: #f9fafb;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 6px 18px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .standings-table thead th:last-child { text-align: right; }
+    .standings-table tbody tr { border-top: 1px solid #f3f4f6; }
+    .standings-table tbody tr:first-child td { font-weight: 700; color: var(--pink-dk); }
+    .standings-table tbody tr:first-child td .pos { background: var(--pink); color: white; }
+    .standings-table td { padding: 10px 18px; font-size: 14px; }
+    .standings-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; }
+    .standings-table .pos {
+      display: inline-flex;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #f3f4f6;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-right: 8px;
+      color: var(--dark);
+    }
+    .standings-table .rider-country { font-size: 11px; color: var(--muted); }
+    .standings-table .gap { color: var(--muted); font-size: 13px; }
+
+    /* ── DIVIDER ──────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 24px 0;
+    }
+
+    /* ── PREVIEW BOX ──────────────────────────────── */
+    .preview-box {
+      background: linear-gradient(135deg, var(--dark) 0%, #3d0030 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .preview-box .preview-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+    .preview-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .preview-box p { font-size: 14px; opacity: 0.8; line-height: 1.65; }
+    .stage-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .stage-chip {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .stage-chip.highlight { background: var(--pink); border-color: var(--pink); }
+
+
+    /* ── SHARE BAR ────────────────────────────────── */
+    .share-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .share-bar span { font-size: 13px; font-weight: 600; flex: 1; }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .share-btn:hover { opacity: 0.8; }
+    .share-btn.whatsapp { background: #25D366; color: white; }
+    .share-btn.copy { background: #e5e7eb; color: #374151; cursor: pointer; border: none; }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    footer a { color: var(--pink); text-decoration: none; }
+    footer strong { color: var(--dark); }
+
+    /* ── TAG / BADGE ──────────────────────────────── */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .tag.kontrovers { background: #fee2e2; color: #b91c1c; }
+    .tag.drama      { background: #fef3c7; color: #92400e; }
+    .tag.sieg       { background: #d1fae5; color: #065f46; }
+
+    /* ── SPACING HELPERS ──────────────────────────── */
+    .mt-2 { margin-top: 8px; }
+    .mt-3 { margin-top: 12px; }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 400px) {
+      .share-bar { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<nav class="topbar">
+  <span>📅 Dienstag, 27. Mai 2026 · Ausgabe #16</span>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrapper" style="padding-top:0;padding-bottom:0;">
+    <div class="eyebrow">🌸 Ciao Ladies! · Giro d'Italia 2026</div>
+    <h1>Vingegaard macht den <em>Boss</em></h1>
+    <p class="hero-sub">Etappe 16 im Tessin – Jonas attackiert 5 km vor dem Gipfel und fährt allen davon. Dahinter explodiert das Rennen!</p>
+    <div class="stage-pill">⛰️ Etappe 16 · Bellinzona → Carì · 113 km · Bergankunft</div>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <!-- ===== FEATURE CARD: Stage 16 ===== -->
+  <p class="section-label">Etappensieg</p>
+
+  <article class="card feature-card">
+    <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Jonas_Vingegaard_2024_TdF_%28cropped%29.jpg/800px-Jonas_Vingegaard_2024_TdF_%28cropped%29.jpg" alt="Jonas Vingegaard" loading="lazy">
+    <div class="img-credit">📷 Jonas Vingegaard, Tour de France 2024 — Wikimedia Commons (CC BY-SA 4.0)</div>
+
+    <div class="card-body">
+      <div>
+        <span class="winner-badge">🏆 Etappensieger</span>
+        <span class="tag sieg">Solo-Sieg</span>
+      </div>
+      <h2>Jonas Vingegaard fährt alle in Grund und Boden</h2>
+
+      <div class="route-bar">
+        <span>🇨🇭 Bellinzona</span>
+        <span class="sep">→</span>
+        <span>🏔️ Carì (Tessin)</span>
+        <span class="distance">113 km</span>
+      </div>
+
+      <p>Nur 113 Kilometer – aber was für ein brutales Brett! Komplett auf Schweizer Boden raste das Peloton aus dem Tessin hinauf zur Bergankunft nach Carì. Vingegaards Mannschaft <strong>Visma-Lease a Bike</strong> ließ den Ausreißern dabei überhaupt keine Chance und zerlegte das Feld schon vor dem Schlussanstieg.</p>
+
+      <p class="mt-3"><strong>5 Kilometer vor dem Gipfel</strong> trat Jonas im Rosa Trikot aus dem Sattel – und zog einfach durch. Keiner konnte folgen. Solo-Sieg, dritter Etappensieg bei diesem Giro. Der Däne zeigt, dass er hier nicht nur verteidigt, sondern dominiert. 🇩🇰🌸</p>
+
+      <div class="quote-block">
+        "Er hat heute gezeigt, dass er der unbestrittene Boss ist – im Hochgebirge ist er schlicht nicht zu stoppen."
+        <cite>— Rennanalyst nach der Etappe</cite>
+      </div>
+    </div>
+  </article>
+
+
+  <!-- ===== STORY 1: Podiums-Duell ===== -->
+  <p class="section-label">Das eigentliche Drama</p>
+
+  <article class="card story-card">
+    <div class="card-header">
+      <div class="icon-box gold">🔥</div>
+      <div>
+        <div class="card-tag">Podiums-Duell · <span class="tag drama">Hochspannung</span></div>
+        <div class="card-title">Felix oder Jai? Das Rennen ums Podium explodiert</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Während Vingegaard davonfuhr, tobte hinter ihm ein echter Thriller um Rang 2 und 3!</p>
+
+      <ul class="bullet-list mt-2">
+        <li><strong>Felix Gall 🇦🇹</strong> (AG2R) – klarer 2. Sieger der Kletterer nach Wingegaard, Etappensiege an Blockhaus & Corno alle Scale. Aber: In den letzten Kilometern am Pila wirkte er minimal angeknackst.</li>
+        <li><strong>Jai Hindley 🇦🇺</strong> (Red Bull–Bora) & <strong>Giulio Pellizzari 🇮🇹</strong> (Red Bull–Bora) – nur 53 Sek. resp. 1:32 hinter Rang 3! Red Bull schickt beide als Angreifer.</li>
+        <li><strong>Thymen Arensman 🇳🇱</strong> (Ineos) – lauert ebenfalls im Kampf um das Podium.</li>
+      </ul>
+
+      <div class="quote-block">
+        "Hindley und Pellizzari sind eine Doppelbedrohung – Red Bull kann entweder angreifen oder taktisch spielen. Felix muss aufpassen."
+        <cite>— Eurosport Analyse zur Schlusswoche</cite>
+      </div>
+    </div>
+  </article>
+
+
+  <!-- ===== STORY 2: Motorrad-Eklat (Nachlese Etappe 15) ===== -->
+  <p class="section-label">Nachlese Etappe 15 · Mailand</p>
+
+  <article class="card story-card">
+    <div class="card-header">
+      <div class="icon-box pink">🏍️</div>
+      <div>
+        <div class="card-tag">Motorrad-Kontroverse · <span class="tag kontrovers">Eklat</span></div>
+        <div class="card-title">Sprinter-Wut in Mailand: Haben Motorräder das Rennen entschieden?</div>
+      </div>
+    </div>
+
+    <img class="card-img-sm" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/2023_ToB_stage_7_-_152_Fredrik_Dversnes.JPG/500px-2023_ToB_stage_7_-_152_Fredrik_Dversnes.JPG" alt="Fredrik Dversnes" loading="lazy">
+    <div class="img-credit">📷 Fredrik Dversnes, 2023 Tour of Britain — Wikimedia Commons (CC BY-SA 4.0)</div>
+
+    <div class="card-body">
+      <p><strong>Etappe 15</strong> – Fredrik Dversnes gewinnt mit einem Ausreißer-Coup in Mailand. Sensationell: Die Sprinter-Teams holen die Gruppe NICHT mehr ein! Der Vorwurf der Top-Teams danach war massiv:</p>
+
+      <div class="quote-block">
+        "Die Motorräder haben das Rennen leider beeinflusst."
+        <cite>— Max Walscheid (Lidl-Trek) wettert im TV</cite>
+      </div>
+
+      <ul class="bullet-list mt-2">
+        <li>TV-Begleitmotorräder sollen dicht vor den Ausreißern gefahren sein → massiver, unbewusster Windschatten</li>
+        <li>Elmar Reinders (Unibet): <em>"Ich glaube, das war ein gutes Motorrad"</em> (wohl ironisch)</li>
+        <li>Fabio Van den Bossche: <em>"Vier Mann gegen vielleicht 20 – fünf, sechs aus jedem Team"</em></li>
+        <li>Experte Rolf Aldag bemängelt: Keine offiziellen UCI-Sicherheitsinspektionen der Strecken bei Grand Tours</li>
+      </ul>
+
+      <p class="mt-3">Dazu sorgte der Stadtkurs durch Mailand mit <strong>Schlaglöchern, Pflastersteinen und Straßenbahnschienen</strong> für Empörung. Jonas Vingegaard, Filippo Ganna und Giulio Ciccone beschwerten sich direkt beim Renndirektor – woraufhin die Jury die offizielle Zeitnahme um <strong>16 Kilometer vorzog</strong>! GC-Fahrer mussten damit nicht im Massensprint kämpfen. Clever – aber auch ein Zeichen, wie gefährlich der Kurs war.</p>
+    </div>
+  </article>
+
+
+  <!-- ===== STORY 3: Punkte-Trikot ===== -->
+  <article class="card story-card">
+    <div class="card-header">
+      <div class="icon-box" style="background:#f3e8ff;">🟣</div>
+      <div>
+        <div class="card-tag">Maglia Ciclamino</div>
+        <div class="card-title">Zum ersten Mal seit 2012: Gewinnt kein Sprinter das Punkte-Trikot?</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Das Lila Trikot (Maglia Ciclamino) ist spannend wie selten! Und es könnte Geschichte schreiben:</p>
+
+      <ul class="bullet-list mt-2">
+        <li>Führender: <strong>Paul Magnier 🇫🇷</strong> (Soudal–Quick-Step) mit 145 Punkten</li>
+        <li>Verfolger: <strong>Jhonatan Narváez 🇪🇨</strong> (UAE) mit 131 Punkten</li>
+        <li>Problem für Magnier: Die letzten Bergankunften (Andalo, Pieve di Soligo) sind <em>maßgeschneidert für Narváez</em></li>
+        <li>Nur noch <strong>ein echter Massensprint</strong> übrig: das Finale in Rom</li>
+      </ul>
+
+      <p class="mt-3">2012 war das letzte Mal, dass kein klassischer Sprinter das Ciclamino gewann. Ein Kletterer mit dem Punkte-Trikot – das wäre eine echte Sensation! 🟣</p>
+    </div>
+  </article>
+
+
+  <!-- ===== GC STANDINGS ===== -->
+  <p class="section-label">Gesamtwertung</p>
+
+  <div class="card standings-card">
+    <div class="standings-header">
+      <h3>🌸 Maglia Rosa — Top 8</h3>
+      <span class="jersey-tag rosa">nach Etappe 16</span>
+    </div>
+    <div class="card-body">
+      <table class="standings-table">
+        <thead>
+          <tr>
+            <th>Fahrer</th>
+            <th>Team</th>
+            <th>Rückstand</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pos">1</span><strong>Jonas Vingegaard</strong> <span class="rider-country">🇩🇰</span></td>
+            <td>Visma</td>
+            <td class="gap">—</td>
+          </tr>
+          <tr>
+            <td><span class="pos">2</span>Felix Gall <span class="rider-country">🇦🇹</span></td>
+            <td>AG2R</td>
+            <td class="gap">+ ?:??</td>
+          </tr>
+          <tr>
+            <td><span class="pos">3</span>Thymen Arensman <span class="rider-country">🇳🇱</span></td>
+            <td>Ineos</td>
+            <td class="gap">+ ?:??</td>
+          </tr>
+          <tr>
+            <td><span class="pos">4</span>Jai Hindley <span class="rider-country">🇦🇺</span></td>
+            <td>Red Bull</td>
+            <td class="gap">~53s hinter P3</td>
+          </tr>
+          <tr>
+            <td><span class="pos">5</span>Giulio Pellizzari <span class="rider-country">🇮🇹</span></td>
+            <td>Red Bull</td>
+            <td class="gap">~1:32 hinter P3</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--muted);padding:10px 18px;">
+        ⚠️ Genaue Zeiten bitte vor dem Versand von ProCyclingStats.com ergänzen!
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ===== JONATHAN MILAN SIDE NOTE ===== -->
+  <article class="card story-card">
+    <div class="card-header">
+      <div class="icon-box dark">😤</div>
+      <div>
+        <div class="card-tag">Lidl-Trek · Enttäuschung des Giro</div>
+        <div class="card-title">Jonathan Milan: Der Sprinter, den das Glück verlassen hat</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Jonathan Milan — Italiens gefeiertster Sprinter und Vorjahres-Punktetrikotträger — erlebt einen bitteren Giro 2026. Stürze, verpasste Anschlüsse, knappe Niederlagen gegen Magnier. In Mailand (seiner Stadt! 🙈) verlor er erneut.</p>
+      <p class="mt-2">Lidl-Trek will es beim großen Finale in <strong>Rom</strong> noch einmal wissen. Letztes Hurra für Milan? 🇮🇹</p>
+    </div>
+  </article>
+
+
+  <!-- ===== WHAT'S NEXT ===== -->
+  <p class="section-label">Was kommt noch?</p>
+
+  <div class="preview-box">
+    <div class="preview-label">⏭️ Schlusswoche — Etappen 17–21</div>
+    <h3>Noch 5 Etappen bis Rom — und alles ist offen!</h3>
+    <p>Das Podium ist noch nicht entschieden. Hindley und Pellizzari werden angreifen. Narváez kämpft ums Lila. Und Vingegaard? Macht er den Pogacar und gewinnt noch mehr Etappen?</p>
+    <div class="stage-chips">
+      <span class="stage-chip highlight">⛰️ Andalo (Berg)</span>
+      <span class="stage-chip">🏔️ Pieve di Soligo</span>
+      <span class="stage-chip">🏁 Rom (Finale)</span>
+    </div>
+  </div>
+
+
+  <!-- ===== SHARE BAR ===== -->
+  <div class="share-bar">
+    <span>💌 Teile heute's Update!</span>
+    <a href="https://wa.me/?text=🌸%20Ciao%20Ladies!%20Giro%20Update%20—%20Vingegaard%20macht%20den%20Boss!%20Hier%20lesen%3A%20[DEIN-LINK-HIER]"
+       class="share-btn whatsapp" target="_blank">
+      📲 WhatsApp
+    </a>
+    <button class="share-btn copy" onclick="navigator.clipboard.writeText(window.location.href).then(()=>this.textContent='✅ Kopiert!')">
+      🔗 Link kopieren
+    </button>
+  </div>
+
+
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <strong>Ciao Ladies! — Giro d'Italia 2026 Daily</strong><br>
+    Kuratiert mit 💗 von Marion<br>
+    Quellen: <a href="https://www.eurosport.de/radsport/giro-d-italia/" target="_blank">Eurosport.de</a> ·
+    <a href="https://www.procyclingstats.com/race/giro-d-italia/2026/gc" target="_blank">ProCyclingStats</a> ·
+    <a href="https://www.cyclingnews.com/" target="_blank">CyclingNews</a><br>
+    <span style="font-size:10px;opacity:0.6;">Bilder: Bitte mit offiziellen Quellen & Quellenangaben ersetzen. Alle Rechte bei den jeweiligen Rechteinhabern.</span>
+  </footer>
+
+</div><!-- /.wrapper -->
+
+<script>
+  // Auto-update share URL
+  document.querySelectorAll('.share-btn.copy').forEach(btn => {
+    btn.dataset.url = window.location.href;
+  });
+</script>
+
+</body>
+</html>
